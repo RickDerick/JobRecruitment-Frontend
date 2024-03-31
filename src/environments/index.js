@@ -1,7 +1,15 @@
-export default{
-    VUE_APP_NAME: APPNAME,
-    VUE_APP_URL: APPURL,
-    VUE_APP_ASSET_URL: ASSETURL,
-    VUE_APP_COMPANY: COMPANY,
+const appName = process.env.VUE_APP_NAME;
+const appUrl = process.env.VUE_APP_URL;
+const apiBaseUrl = process.env.VUE_APP_API_BASE_URL;
+const socketBaseUrl = process.env.VUE_APP_SOCKET_URL;
+const useCryptor = process.env.VUE_APP_USE_CRYPTOR;
+const cryptorEndpoint = process.env.VUE_APP_CRYPTOR_ENDPOINT;
 
-} = import.meta.env
+export {
+  appName,
+  appUrl,
+  socketBaseUrl,
+  apiBaseUrl,
+  useCryptor,
+  cryptorEndpoint,
+};
