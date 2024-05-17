@@ -10,29 +10,29 @@
                         <v-card-text class="mt-5">
                             <v-form v-model="valid" ref="loginForm">
                                  <!--User name-->
-                  <v-text-field
-                    @keyup.enter.prevent="login"
-                    ref="email"
-                    label="Email address"
-                    :rules="rules.email"
-                    v-model="formData.email"
-                    variant="outlined"
-                    placeholder="Enter email address"
-                  />
+                                  <v-text-field
+                                    @keyup.enter.prevent="login"
+                                    ref="email"
+                                    label="Email address"
+                                    :rules="rules.email"
+                                    v-model="formData.email"
+                                    variant="outlined"
+                                    placeholder="Enter email address"
+                                  />
 
-                  <!-- Password -->
-                  <v-text-field
-                    @keyup.enter.prevent="login"
-                    ref="password"
-                    :rules="rules.password"
-                    label="Password"
-                    v-model="formData.password"
-                    variant= "outlined"
-                    placeholder="Enter Password"
-                    :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
-                    :type="showPassword ? 'text' : 'password'"
-                    @click:append-inner="showPassword = !showPassword"
-                  />
+                                  <!-- Password -->                                       
+                                  <v-text-field
+                                    @keyup.enter.prevent="login"
+                                    ref="password"
+                                    :rules="rules.password"
+                                    label="Password"
+                                    v-model="formData.password"
+                                    variant= "outlined"
+                                    placeholder="Enter Password"
+                                    :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+                                    :type="showPassword ? 'text' : 'password'"
+                                    @click:append-inner="showPassword = !showPassword"
+                                  />
 
                             </v-form>
 
