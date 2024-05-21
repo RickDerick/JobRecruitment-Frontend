@@ -91,11 +91,18 @@
   <script>
  import RouterMixin from "@/mixin/RouterMixin";
 //   import RequestAccess from "@/modules/auth/components/requestAccess";
+import { useAuthStore } from "@/store/auth"
   
   export default {
     name: "forgotPassword",
     components: { RequestAccess },
     mixins: [RouterMixin],
+
+    setup(){
+      const authStore = useAuthStore();
+
+    },
+
     data: function () {
       return {
         dialog: false,
@@ -136,7 +143,7 @@
   
         this.$refs.forgetForm.validate();
         if (this.isValid) {
-          this.$store.dispatch("Auth/forgotPassword", this.formData);
+          this.authStore.forgotPassword(this.formData);
         }
       },
   
@@ -150,9 +157,9 @@
       },
       sendOtp: function () {
         const data = {
-          email: this.this.formData.email,
+          email: this.formData.email,
         };
-        this.$store.dispatch("Auth/sendOtp", data);
+        this.authStore.sendOtp(data);
       },
     },
   };
