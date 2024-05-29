@@ -78,7 +78,7 @@
           <v-divider />
   
           <v-card-actions>
-            <v-btn @click="sendOtp" :loading="$store.getters['loading']">
+            <v-btn @click="sendOtp" :loading="globalStore.setGlobalLoader(true)">
               Resend
             </v-btn>
             <v-spacer />
@@ -91,7 +91,8 @@
   <script>
  import RouterMixin from "@/mixin/RouterMixin";
 //   import RequestAccess from "@/modules/auth/components/requestAccess";
-import { useAuthStore } from "@/store/auth"
+import { useAuthStore } from "@/store/auth";
+import {useGlobalStore} from "@/store/globalStore"
   
   export default {
     name: "forgotPassword",
@@ -100,6 +101,7 @@ import { useAuthStore } from "@/store/auth"
 
     setup(){
       const authStore = useAuthStore();
+      const globalStore = useGlobalStore();
 
     },
 
