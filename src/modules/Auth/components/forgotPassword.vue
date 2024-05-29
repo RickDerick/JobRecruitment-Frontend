@@ -153,7 +153,7 @@ import { useAuthStore } from "@/store/auth"
           email: this.formData.email,
         };
   
-        this.$store.dispatch("Auth/verifyforgotOtp", data);
+        this.authStore.verifyforgotOtp(data);
       },
       sendOtp: function () {
         const data = {
