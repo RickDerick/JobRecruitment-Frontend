@@ -8,7 +8,7 @@ export const useAuthStore = defineStore('auth', {
     state: () =>({
         loading: false,
         otpModal: false,
-        openforgotOtp: false,
+        forgotOtp: false,
         userData: [],
 
     }),
@@ -54,6 +54,22 @@ export const useAuthStore = defineStore('auth', {
             this.toast.error(err?.response?.data?.message);
           })
           
-        }
+        },
+
+        verifyforgotOtp(data) {
+          this.setAuthStoreLoader(true);
+          call("post", constants.passwordReset, data)
+            .then((res) => {
+              console.log(res);
+              this.setAuthStoreLoader(false);
+              this.toast.success("OTP succefully verified");
+              this.router.push({ name: "setPassword" });
+            })
+            .catch((err) => {
+              this.setAuthStoreLoader(false);
+              this.toast.error(err?.response?.data?.message);
+            });
+        },
+
       }
 })
