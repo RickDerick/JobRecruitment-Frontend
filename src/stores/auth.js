@@ -27,6 +27,26 @@ export const useAuthStore = defineStore('auth', {
           });
         },
 
+        login: (data) => {
+          call("post", constants.login, data)
+            .then((res) => {
+              if (res.data.data.authStatus === "success") {
+                AuthService.login(res.data.data.token, res.data.data.user);
+                this.setAuthStoreLoader(true);
+              } else {
+                if (res.data.data.authStatus === "error") {
+                  // Event.$emit("ApiError", res.data.data.email[0]);
+                  this.toast.error(err?.res?.data?.email[0])
+                  this.setAuthStoreLoader(false)
+                }
+              }
+            })
+            .catch((err)=>{
+              this.setAuthStoreLoader(false);
+              this.toast.error(err?.response?.data?.message);
+            })
+        },
+
         sendOtp(data){
           this.setAuthStoreLoader(true);
           call("post", constants.sendOtp, data)
@@ -60,7 +80,6 @@ export const useAuthStore = defineStore('auth', {
           this.setAuthStoreLoader(true);
           call("post", constants.passwordReset, data)
             .then((res) => {
-              console.log(res);
               this.setAuthStoreLoader(false);
               this.toast.success("OTP succefully verified");
               this.router.push({ name: "setPassword" });
@@ -69,6 +88,20 @@ export const useAuthStore = defineStore('auth', {
               this.setAuthStoreLoader(false);
               this.toast.error(err?.response?.data?.message);
             });
+        },
+
+        linkedinLogin: () => {
+          this.setAuthStoreLoader(true);
+          call("get", constants.linkedinLogin)
+            .then((res) => {
+              window.location = res.data.data;
+              this.setAuthStoreLoader(false);
+            })
+            .catch((err)=>{
+              this.setAuthStoreLoader(false);
+              this.toast.error(err?.response?.data?.message);
+            })
+            
         },
 
       }
