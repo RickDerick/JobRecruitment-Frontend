@@ -113,22 +113,23 @@
   </template>
   
   <script>
-  //
   import Verify from "./Verify";
+  import { useAuthStore } from "@/store/auth";
   export default {
     name: "Register",
     components: {
       Verify,
     },
-  
+  setup(){
+    const authStore = useAuthStore();
+    return {authStore}
+  },
     data: function () {
       return {
         formData: {
           email: "",
           phone: "",
           password: "",
-          provider: "none",
-          provider_id: "none",
           avatar: null,
           firstName: "",
           lastName: "",
@@ -137,7 +138,6 @@
         userEmail: "",
         showPassword: false,
         showConfPassword: false,
-        isFirm: false,
       };
     },
   
@@ -174,9 +174,7 @@
         }
   
         if (isValid)
-          this.$store.dispatch("Auth/register", {
-            ...this.formData,
-          });
+          this.authStore.register( ...this.formData);
         this.userEmail = this.formData.email;
       },
     },
