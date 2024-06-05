@@ -26,6 +26,26 @@ export const useAuthStore = defineStore('auth', {
             forgotOtp: payload,
           });
         },
+        // OTP request
+    openOtp(payload) {
+      this.$patch({
+        otpModal: payload,
+      });
+    },
+
+        register: (data) => {
+          this.setAuthStoreLoader(true);
+          call("post", constants.register, data)
+            .then((res) => {
+              this.setAuthStoreLoader(false);
+              this.toast.success(res.data.message);
+              this.openOtp(true);
+            })
+            .catch((err) => {
+              commit("SET_LOADING", false, { root: true });
+              Event.$emit("ApiError", err.response.data.message);
+            });
+        },
 
         login: (data) => {
           call("post", constants.login, data)

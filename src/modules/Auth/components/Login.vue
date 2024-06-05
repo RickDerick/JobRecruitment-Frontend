@@ -76,14 +76,11 @@
           </v-col>
         </v-row>
       </v-overlay>
-
-      <request-access />
     </v-dialog>
   </v-container>
 </template>
 
 <script>
-import RequestAccess from "@/modules/auth/components/requestAccess";
 import { useAuthStore } from "@/store/auth";
 export default {
   name: "login",
@@ -91,6 +88,7 @@ export default {
 
   setup(){
       const authStore = useAuthStore();
+      return {authStore}
       // const globalStore = useGlobalStore();
 
     },
@@ -101,12 +99,8 @@ export default {
       token: "",
       test: [],
       isValid: false,
-      isValidSearch: false,
       isValidPassword: false,
       showPassword: false,
-      step: "login",
-      steps: ["login", "verify", "password"],
-      memberNo: "",
       formData: {
         email: "",
         password: "",
@@ -126,48 +120,6 @@ export default {
     };
   },
 
-  beforeRouteEnter(to, from, next) {
-    next((v) => {
-      if (v.$route.query.memberNo && v.$route.query.voterToken) {
-        v.token = v.$route.query.voterToken;
-        v.memberNo = v.$route.query.memberNo;
-        v.step = "password";
-      }
-    });
-  },
-
-  mounted() {
-    Event.$on("search-success", () => {
-      this.step = "verify";
-    });
-
-    Event.$on("search-failed", (message) => {
-      this.$alert({
-        title: "Voter not found",
-        text: message,
-      });
-    });
-
-    Event.$on("token-verification-success", () => {
-      this.step = "password";
-      this.dialog = false;
-    });
-
-    Event.$on("token-verification-failed", (message) => {
-      this.$alert({
-        title: "Invalid voter token",
-        text: message,
-      });
-    });
-
-    Event.$on("token-sending-failed", (message) => {
-      this.$alert({
-        title: "Token not sent",
-        text: message,
-      });
-    });
-  },
-
   computed: {
 
     routeParams() {
@@ -182,40 +134,9 @@ export default {
         this.authStore.login(this.formData);
       }
     },
-    linkedinLogin: function () {
-      this.$store.dispatch("Auth/linkedinLogin");
-    },
-
-    search: function () {
-      this.$refs.searchForm.validate();
-      if (this.isValidSearch) {
-        this.$store.dispatch("Auth/search", { memberNo: this.memberNo });
-      }
-    },
-
-    setPassword: function () {
-      this.$refs.passwordForm.validate();
-      if (this.isValidPassword) {
-        this.$store.dispatch("Auth/setPassword", {
-          ...this.formData,
-          voterToken: this.token,
-        });
-      }
-    },
-
-    sendToken: function (type) {
-      this.$store.dispatch("Auth/sendToken", {
-        user: { ...this.results },
-        type: type,
-      });
-    },
-
-    verifyToken: function () {
-      this.$store.dispatch("Auth/verifyToken", {
-        user: { ...this.results },
-        voterToken: this.token,
-      });
-    },
+    // linkedinLogin: function () {
+    //   this.$store.dispatch("Auth/linkedinLogin");
+    // },
 
     emailMask: function (email) {
       if (!email) return "";

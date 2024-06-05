@@ -1,5 +1,6 @@
 export default {
     // AUTH CONSTANTS
+    register: `auth/register`,
     login: `auth/login`,
     sendOtp: `auth/resend-otp`,
     passwordReset: `auth/forgot-password`,
