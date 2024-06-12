@@ -18,12 +18,12 @@
     
 </template>
 <script>
-import APPNAME from '@/environments';
+import { appName } from '../environments';
 export default{
     name: "appFooter",
     data: () => {
         return{
-            APPNAME: APPNAME,
+            appName: appName,
         };
     },
 }

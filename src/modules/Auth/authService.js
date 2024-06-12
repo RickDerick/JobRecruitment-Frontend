@@ -1,4 +1,4 @@
-import { appName } from "@/environment";
+import { appName } from "../../environments";
 //
 
 class AuthService {

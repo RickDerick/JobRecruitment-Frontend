@@ -8,6 +8,7 @@ export const useAuthStore = defineStore('auth', {
     state: () =>({
         loading: false,
         otpModal: false,
+        passwordSetSuccess: false,
         forgotOtp: false,
         userData: [],
 
@@ -21,6 +22,9 @@ export const useAuthStore = defineStore('auth', {
           const globalStore = useGlobalStore();
           globalStore.setGlobalLoader(status);
         },
+        setPasswordSetSuccess(status) {
+          this.passwordSetSuccess = status;
+        },
         openforgotOtp(payload) {
           this.$patch({
             forgotOtp: payload,
@@ -31,6 +35,19 @@ export const useAuthStore = defineStore('auth', {
       this.$patch({
         otpModal: payload,
       });
+    },
+
+    resetPassword(data) {
+      this.setAuthStoreLoader(true);
+      call("post", constants.register, data)
+        .then((res) => {
+          this.setAuthStoreLoader(false);
+          this.router.push({ name: "dashboard" });
+        })
+        .catch((err) => {
+          this.toast.error(err?.response?.data?.message);
+          this.setAuthStoreLoader(false);
+        });
     },
 
         register: (data) => {

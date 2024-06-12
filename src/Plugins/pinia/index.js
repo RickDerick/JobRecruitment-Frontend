@@ -1,11 +1,11 @@
 import { createPinia } from 'pinia';
-import {router} from "@/modules/Plugins/router";
-import {  markRaw } from "vue";
-import {authService} from "@/modules/Auth/authService";
+import {router} from "../../routes";
+import { markRaw } from "vue";
+import {AuthService} from "../../modules/Auth";
 
-const pinia = createPinia();
+export const pinia = createPinia();
 
 pinia.use(({ store }) => {
     store.router = markRaw(router);
-    store.authService = markRaw(authService);
+    store.authService = markRaw(AuthService);
   });

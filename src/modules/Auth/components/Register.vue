@@ -57,7 +57,7 @@
                 :rules="rules.email"
               />
   
-              <vue-tel-input-vuetify
+              <!-- <vue-tel-input-vuetify
                 required
                 clearable
                 placeholder="Enter Phone Number"
@@ -73,7 +73,7 @@
                 defaultCountry="KE"
                 :onlyCountries="['KE', 'UG', 'TZ']"
                 :rules="rules.phone"
-              ></vue-tel-input-vuetify>
+              ></vue-tel-input-vuetify> -->
   
               <v-text-field
                 dense
