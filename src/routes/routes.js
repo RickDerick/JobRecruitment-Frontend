@@ -1,8 +1,14 @@
-import { createWebHistory, createRouter } from 'vue-router';
+//import { createWebHistory, createRouter } from 'vue-router';
+import { createWebHistory, createRouter} from 'vue-router';
 import nextFactory from '../modules/Auth/middleware/MiddlewareFactory';
 import Fallback from '../components/Fallback.vue';
 
 const routes = [
+
+  // {
+  //   path: "/",
+  //   redirect: { name: "home" },
+  // },
 
     {
         path: "/:pathMatch(.*)*",
