@@ -1,5 +1,5 @@
 import home from "./views/home.vue";
-import Examplepage from "../home/components/Examplepage.vue";
+import jobList from "../home/components/jobList.vue";
 
 export default {
     path: "/",
@@ -10,7 +10,7 @@ export default {
             name: "home",
             components:
             {
-                view: Examplepage,
+                view: jobList,
             }
         }
     ]

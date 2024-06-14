@@ -2,7 +2,7 @@
     <v-footer app >
     <p class="text-center mx-auto">
       <span style="color: #000000">
-        {{APPNAME}} © {{ new Date().getFullYear() }}
+        {{appName}} © {{ new Date().getFullYear() }}
       </span>
       
       <a
@@ -11,7 +11,7 @@
         target="_blank"
         style="color:#000"
       >
-         Rick & Stella LTD
+         Rick&S LTD
       </a>
     </p>
   </v-footer>

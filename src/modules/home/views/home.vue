@@ -1,10 +1,12 @@
 <template>
     <v-app>
-      <v-app-bar app>
-        <h5>Logo</h5>
+      <v-app-bar>
+        <!-- To insert a company logo later -->
+        <template v-slot:prepend>
+          <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        </template>
          <span>company name</span>
         <v-spacer />
-  
         <v-btn
           color="primary"
           text
@@ -12,8 +14,8 @@
         >
           Login
         </v-btn>
+        <!-- <profileHeader class="" v-else /> -->
       </v-app-bar>
-  
       <v-main class="background">
         <router-view name="view" />
         <router-view name="action" />

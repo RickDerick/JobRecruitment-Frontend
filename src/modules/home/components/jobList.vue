@@ -17,8 +17,8 @@
                 </v-btn>
               </v-card>
             </v-col>
-            <v-col cols="12" md="5" v-if="$vuetify.breakpoint.mdAndUp">
-              <v-img contain src="/img/career.svg" />
+            <v-col cols="12" md="5">
+              <v-img contain src="/src/assets/career5.jfif" />
             </v-col>
           </v-row>
         </v-card>
@@ -37,7 +37,7 @@
             />
           </v-card-text>
   
-          <v-card-text>
+          <!-- <v-card-text>
             <v-row>
               <v-col cols="12" md="5" v-if="jobs.length !== 0">
                 <v-list>
@@ -100,19 +100,19 @@
                 />
               </v-col>
             </v-row>
-          </v-card-text>
+          </v-card-text> -->
         </v-card>
       </v-container>
     </div>
   </template>
   
   <script>
-  import selectedJobCard from "./selectedJobCard";
-  import AuthService from "@/modules/auth/authService";
+  // import selectedJobCard from "./selectedJobCard";
+  // import AuthService from "@/modules/auth/authService";
   export default {
     name: "jobList",
     components: {
-      selectedJobCard,
+      // selectedJobCard,
     },
   
     data: function () {
@@ -124,16 +124,16 @@
         selectedJob: undefined,
       };
     },
-    beforeRouteEnter(to, from, next) {
-      next((v) => {
-        v.$store.dispatch("Home/getCategories");
-        v.$store.dispatch("Home/getJobs");
-        v.$store.dispatch("Landing/getCompanyInfo");
-        if (AuthService.check()) {
-          v.$store.dispatch("Home/getApplications", v.user.profileID);
-        }
-      });
-    },
+    // beforeRouteEnter(to, from, next) {
+    //   next((v) => {
+    //     v.$store.dispatch("Home/getCategories");
+    //     v.$store.dispatch("Home/getJobs");
+    //     v.$store.dispatch("Landing/getCompanyInfo");
+    //     if (AuthService.check()) {
+    //       v.$store.dispatch("Home/getApplications", v.user.profileID);
+    //     }
+    //   });
+    // },
     computed: {
       categories: function () {
         return this.$store.getters["Home/homeGetters"]("categories");

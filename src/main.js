@@ -1,6 +1,5 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 // import VueTelInputVuetify from 'vue-tel-input-vuetify/lib';
 import Vue3Toasity from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';

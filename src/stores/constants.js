@@ -6,4 +6,9 @@ export default {
     passwordReset: `auth/forgot-password`,
     verifyOtp: `auth/verify-otp`,
     linkedinLogin: `auth/login/linkedin-openid`,
+
+//HOME CONSTANTS
+categories: "category/jobCategories",
+
+
 }
