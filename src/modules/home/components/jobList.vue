@@ -108,42 +108,55 @@
   
   <script>
   // import selectedJobCard from "./selectedJobCard";
-  // import AuthService from "@/modules/auth/authService";
+  //  import AuthService from "../../../modules/Auth";
+   import {useHomeStore} from "../../../stores";
+   import {useGlobalStore} from "../../../stores";
+
   export default {
     name: "jobList",
     components: {
       // selectedJobCard,
     },
+
+    setup(){
+      const homeStore = useHomeStore();
+      const globalStore = useGlobalStore();
+
+      return {
+        homeStore,
+        globalStore,
+    };
+    },
   
     data: function () {
       return {
-        departments: [],
+        // departments: [],
         index: 0,
         search: "",
         edit: true,
         selectedJob: undefined,
       };
     },
-    // beforeRouteEnter(to, from, next) {
-    //   next((v) => {
-    //     v.$store.dispatch("Home/getCategories");
-    //     v.$store.dispatch("Home/getJobs");
-    //     v.$store.dispatch("Landing/getCompanyInfo");
-    //     if (AuthService.check()) {
-    //       v.$store.dispatch("Home/getApplications", v.user.profileID);
-    //     }
-    //   });
-    // },
+    beforeRouteEnter(to, from, next) {
+      next((v) => {
+        v.homeStore.getCategories();
+        // v.homeStore.getJobs();
+        // v.$store.dispatch("Landing/getCompanyInfo");
+        // if (AuthService.check()) {
+        //   v.$store.dispatch("Home/getApplications", v.user.profileID);
+        // }
+      });
+    },
     computed: {
       categories: function () {
-        return this.$store.getters["Home/homeGetters"]("categories");
+        return this.homeStore.homeStoreGetters("categories");
       },
       jobs: function () {
-        return this.departments.length > 0
-          ? this.$store.getters["Home/homeGetters"]("jobs").filter((el) => {
-              return this.departments.find((item) => item.code === el.category);
-            })
-          : this.$store.getters["Home/homeGetters"]("jobs");
+        // return this.departments.length > 0
+          // ? this.$store.getters["Home/homeGetters"]("jobs").filter((el) => {
+          //     return this.departments.find((item) => item.code === el.category);
+          //   })
+          return this.homeStore.homeStoreGetters("jobs");
       },
       filteredItems() {
         const data = this.jobs.filter((item) => {

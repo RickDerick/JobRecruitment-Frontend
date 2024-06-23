@@ -8,7 +8,7 @@ export default {
     linkedinLogin: `auth/login/linkedin-openid`,
 
 //HOME CONSTANTS
-categories: "category/jobCategories",
+categories: "setups/category/jobCategories",
 
 
 }

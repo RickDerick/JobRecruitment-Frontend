@@ -1,2 +1,1 @@
-import { call } from "./http";
-export { call };
+export { default as call } from "./http";

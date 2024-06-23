@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 import { AuthService } from '../modules/Auth';
 import constants from './constants';
-import { call } from '@/service';
-import { useGlobalStore } from "@/store";
+import { call } from '../services';
+import { useGlobalStore } from "../stores";
 
 export const useAuthStore = defineStore('auth', {
     state: () =>({
