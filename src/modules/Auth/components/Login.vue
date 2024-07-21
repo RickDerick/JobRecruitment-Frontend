@@ -1,44 +1,54 @@
 <template>
   <v-container class="fill-height d-flex flex-column align-content-center">
     <v-dialog v-model="dialog" persistent>
-      <v-overlay opacity="0" class="black--text" absolute>
-        <v-row style="width: 90vw">
-          <v-col cols="12" md="4" offset-md="4">
-            <v-card tile light>
-              <v-card-title> Login to account </v-card-title>
+      <div>
+    <v-img
+      class="mx-auto my-6"
+      max-width="228"
+      src="https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-v3-slim-text-light.svg"
+    ></v-img>
+      </div>
+    <v-row style="width: 90vw">
+      <v-col cols="12" md="4" offset-md="4">
+        <v-card
+            class="mx-auto pa-12 pb-8"
+            elevation="8"
+            max-width="448"
+            rounded="lg"
+          >
+    <v-card-title class="d-flex flex-row justify-center font-weight-black"> 
+      Login to account 
+    </v-card-title>
+      <v-card-text class="mt-5">
+        <v-form ref="loginForm">
+          <v-text-field
+             density="compact"
+             placeholder="Email address"
+            prepend-inner-icon="mdi-email-outline"
+            variant="outlined"
+            label="Email address"
+            ref="email"
+            v-model="formData.email"
+          >
+        </v-text-field>
 
-              <v-card-text class="mt-5">
-                <v-form ref="loginForm" v-model="isValid">
-                  <!--User name-->
-                  <v-text-field
-                    @keyup.enter.prevent="login"
-                    ref="email"
-                    label="Email address"
-                    :rules="rules.email"
-                    v-model="formData.email"
-                    outlined
-                    placeholder="Enter email address"
-                  />
+        <v-text-field
+          :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+          :type="visible ? 'text' : 'password'"
+          density="compact"
+          placeholder="Enter your password"
+          label="Password"
+          prepend-inner-icon="mdi-lock-outline"
+          variant="outlined"
+          @click:append-inner="visible = !visible"
+         >
+         </v-text-field>
+        </v-form>
+      </v-card-text>
 
-                  <!-- Password -->
-                  <v-text-field
-                    @keyup.enter.prevent="login"
-                    ref="password"
-                    :rules="rules.password"
-                    label="Password"
-                    v-model="formData.password"
-                    outlined
-                    placeholder="Enter Password"
-                    :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
-                    :type="showPassword ? 'text' : 'password'"
-                    @click:append="showPassword = !showPassword"
-                  />
-                </v-form>
-              </v-card-text>
-
-              <v-card-actions class="mt-n5 justify-center">
+           <v-card-actions class="mt-n5 justify-center">
                 <v-col cols="12">
-                  <v-btn @click="login" color="primary" class="mt-n5" block>
+                  <v-btn @click="login" color="primary" class="mt-n5"  variant="flat" block>
                     Login
                   </v-btn>
 
@@ -49,42 +59,30 @@
                   >
                     Forgot password?</v-btn
                   >
-                  <p class="text-center overline grey--text">
+                  <p class="text-center text-high-emphasis grey--text">
                     dont have an account?
                   </p>
                   <v-btn
                     :to="{ name: 'Register', params: { code: routeParams } }"
-                    color="secondary"
+                    color="blue"
+                    variant="flat"
                     block
                   >
                     register
                   </v-btn>
-
-                  <p class="text-center overline grey--text">or</p>
-
-                  <v-btn
-                    @click="linkedinLogin"
-                    color="blue"
-                    block
-                    class="mt-n3 white--text"
-                  >
-                    signin with LinkedIn
-                  </v-btn>
                 </v-col>
               </v-card-actions>
             </v-card>
-          </v-col>
-        </v-row>
-      </v-overlay>
-    </v-dialog>
-  </v-container>
-</template>
-
+              </v-col>
+            </v-row> 
+            </v-dialog>
+          </v-container>
+    </template>
 <script>
-import { useAuthStore } from "@/store/auth";
+import { useAuthStore } from "../../../stores/auth";
 export default {
   name: "login",
-  components: { RequestAccess },
+  components: {},
 
   setup(){
       const authStore = useAuthStore();
@@ -118,13 +116,6 @@ export default {
       },
       viewPassword: false,
     };
-  },
-
-  computed: {
-
-    routeParams() {
-      return this.$route.params.code;
-    },
   },
 
   methods: {
@@ -163,22 +154,17 @@ export default {
       return phoneNumber ? phoneNumber.replace(/\d{5}$/, "*****") : "";
     },
   },
-  watch: {
-    getUserData: {
-      handler: function () {
-        if (this.getUserData.length > 0) {
-          this.test = this.getUserData;
-        }
-      },
-    },
-  },
+  // watch: {
+  //   getUserData: {
+  //     handler: function () {
+  //       if (this.getUserData.length > 0) {
+  //         this.test = this.getUserData;
+  //       }
+  //     },
+  //   },
+  // },
 };
 </script>
 
 <style scoped>
-@import url("../styles.css");
-
-.v-input__append-outer {
-  margin-top: 8px;
-}
 </style>

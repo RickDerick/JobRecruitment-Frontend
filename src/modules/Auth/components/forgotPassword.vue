@@ -89,15 +89,15 @@
     </v-container>
   </template>
   <script>
- import RouterMixin from "@/mixin/RouterMixin";
+ //import RouterMixin from "@/mixin/RouterMixin";
 //   import RequestAccess from "@/modules/auth/components/requestAccess";
-import { useAuthStore } from "@/store/auth";
-import {useGlobalStore} from "@/store/globalStore"
+import { useAuthStore } from "../../../stores/auth";
+import {useGlobalStore} from "../../../stores/globalStore"
   
   export default {
     name: "forgotPassword",
-    components: { RequestAccess },
-    mixins: [RouterMixin],
+    components: { },
+   // mixins: [RouterMixin],
 
     setup(){
       const authStore = useAuthStore();
