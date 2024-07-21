@@ -7,7 +7,7 @@
             width="600px"
             class="mt-n8"
             alt=""
-            src="../../../assets/pageNotFound2.jpg"
+            src="../../../assets/Service Unavailable.png"
           />
           <span class="ml-2">Kindly click the button below to go back</span>
           <div class="text-center">

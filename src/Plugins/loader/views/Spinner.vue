@@ -11,7 +11,7 @@
   
   <script>
   import { HalfCircleSpinner as spinner } from "epic-spinners";
-  import { useGlobalStore } from "@/store";
+  import { useGlobalStore } from "../../../stores/globalStore";
   export default {
     setup() {
     const globalStore = useGlobalStore();

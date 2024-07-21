@@ -46,7 +46,7 @@
     </v-dialog>
 </template>
 <script>
-import { useAuthStore } from '@/store/auth'
+import { useAuthStore } from '../../../stores/auth'
 export default{
   name:"Verify",
   props: {
@@ -72,8 +72,11 @@ export default{
         this.authStore.openOtp(value);
       },
     },
-  },
 
+    usertestEmail(){
+    return this.userEmail;
+  }
+  },
   methods: {
     verifyOtp: function () {
       const data = {

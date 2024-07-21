@@ -8,8 +8,14 @@ export const useHomeStore = defineStore('home', {
 
   state: () => ({
     categories: [],
-    jobs: [],
+    allJobs: [],
   }),
+
+  mutations: {
+    MUTATE: (state, payload) => {
+      state[payload.state] = payload.value;
+    },
+  },
 
   getters: {
     homeStoreGetters: (state) => (key) => state[key],
@@ -26,7 +32,7 @@ export const useHomeStore = defineStore('home', {
       call("get", constants.categories)
         .then((res) => {
             this.$patch({
-                categories: res.data,
+                categories: res.data.data,
               });
           this.setHomeStoreLoader(false);
         })
@@ -37,9 +43,11 @@ export const useHomeStore = defineStore('home', {
 
     getJobs() {
       this.setHomeStoreLoader(true);
-      call("get", constants.jobs)
+      call("get", constants.allJobs)
         .then((res) => {
-          this.jobs = res.data;
+          this.$patch({
+            allJobs: res.data.data,
+          });
           this.setHomeStoreLoader(false);
         })
         .catch((err) => {

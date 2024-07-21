@@ -9,6 +9,6 @@ export default {
 
 //HOME CONSTANTS
 categories: "setups/category/jobCategories",
-
+allJobs: "vacancy/jobvacancy/all"
 
 }

@@ -11,6 +11,8 @@
           color="primary"
           text
           class="mx-2"
+          v-if="!auth.check()"
+          :to="{name: 'Login'}"
         >
           Login
         </v-btn>
@@ -26,10 +28,22 @@
   
   <script>
   import AppFooter from "../../../components/app-footer.vue";
-  // import { AuthService } from "../../Auth";
+  import { AuthService } from "../../Auth";
   export default {
     name: "home",
     components: { AppFooter },
+
+    data() {
+      return{
+
+      }
+    },
+
+    computed:{
+        auth(){
+          return AuthService
+        }
+      }
 
   }
 

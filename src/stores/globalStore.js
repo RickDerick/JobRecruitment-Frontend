@@ -2,7 +2,6 @@ import { defineStore } from 'pinia';
 import { AuthService } from '../modules/Auth';
 import constants from './constants';
 import { call } from '../services';
-import { de } from 'vuetify/locale';
 
 export const useGlobalStore = defineStore ('global', {
     state: () => ({
